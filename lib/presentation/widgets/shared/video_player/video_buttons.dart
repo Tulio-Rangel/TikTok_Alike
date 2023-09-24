@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_alike/config/helpers/human_formats.dart';
 
 import '../../../../domain/entities/video_post.dart';
 
@@ -42,7 +43,7 @@ class _CustomIconButton extends StatelessWidget {
               color: color,
               size: 30,
             )),
-        Text('$value')
+        Text(HumanFormats.humanReadbleNumber(value.toDouble()))
       ],
     );
   }
