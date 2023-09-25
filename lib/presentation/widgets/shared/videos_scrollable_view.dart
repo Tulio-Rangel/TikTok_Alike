@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_alike/presentation/widgets/shared/video_player/video_buttons.dart';
 
 import '../../../domain/entities/video_post.dart';
+import '../video/fullscreen_player.dart';
 
 class VideoScrollableView extends StatelessWidget {
   final List<VideoPost> videos;
@@ -21,6 +22,12 @@ class VideoScrollableView extends StatelessWidget {
         return Stack(
           children: [
             // Video Player + gradiente
+            SizedBox.expand(
+              child: FullScreenPlayer(
+                caption: videoPost.caption,
+                videoUrl: videoPost.videoUrl,
+              ),
+            ),
 
             // Botones
             Positioned(
