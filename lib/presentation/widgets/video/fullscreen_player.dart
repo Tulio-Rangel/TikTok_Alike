@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
-class FullScreenPlayer extends StatelessWidget {
+class FullScreenPlayer extends StatefulWidget {
   final String videoUrl;
   final String caption;
 
@@ -8,7 +9,42 @@ class FullScreenPlayer extends StatelessWidget {
       {super.key, required this.videoUrl, required this.caption});
 
   @override
+  State<FullScreenPlayer> createState() => _FullScreenPlayerState();
+}
+
+class _FullScreenPlayerState extends State<FullScreenPlayer> {
+  late VideoPlayerController controller;
+
+  // Se debe inicializar el widget
+  @override
+  void initState() {
+    super.initState();
+
+    controller = VideoPlayerController.asset(
+        widget.videoUrl) // El widge.videoUrl es el url que defini arriba
+      ..setVolume(0) // Volumen en 0
+      ..setLooping(true) // Loop activo
+      ..play();
+  }
+
+  @override
+  void dispose() {
+    controller
+        .dispose(); // Para evitar la fuga de memoria, esto evita que el video se siga reproduciendo cuando ya pasamos a otro video
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return FutureBuilder(
+      future: controller.initialize(),
+      builder: (context, snapshot) {
+        return const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+          ),
+        );
+      },
+    );
   }
 }
