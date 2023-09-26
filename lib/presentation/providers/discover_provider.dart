@@ -12,7 +12,7 @@ class DiscoverProvider extends ChangeNotifier {
 
   // Funcion para pasar al siguiente video
   Future<void> loadNextPage() async {
-    await Future.delayed(const Duration(seconds: 2));
+    //await Future.delayed(const Duration(seconds: 2));
 
     // Metodo que va a cargar los videos
     final List<VideoPost> newVideos = videoPosts
