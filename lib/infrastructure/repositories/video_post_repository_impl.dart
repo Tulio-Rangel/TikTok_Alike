@@ -3,11 +3,11 @@ import 'package:tiktok_alike/domain/entities/video_post.dart';
 
 import '../../domain/repositories/video_posts_repository.dart';
 
-class VideoPostsRepository implements VideoPostRepository {
+class VideoPostsRepositoryImpl implements VideoPostRepository {
   // Se llama al video post data source del dominio, asi mas adelante permitimos datasopurces de cualquier lado
   final VideoPostDataSource videosDatasource;
 
-  VideoPostsRepository({required this.videosDatasource});
+  VideoPostsRepositoryImpl({required this.videosDatasource});
 
   @override
   Future<List<VideoPost>> getFavoriteVideosByUser(String userId) {
